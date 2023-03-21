@@ -10,7 +10,7 @@ class MonitoringManager(BaseManager):
         super().__init__(transaction)
 
     def list_logs(self, params):
-        cloud_logging_conn: CloudLoggingConnector = self.locator.get_connector(CloudLoggingConnector, **params)
+        cloud_logging_conn: CloudLoggingConnector = self.locator.get_connector('CloudLoggingConnector', **params)
 
-        logs = cloud_logging_conn.list_log_entries(params)
-        print(logs)
+        for logs in cloud_logging_conn.list_log_entries(params):
+            print(logs)
