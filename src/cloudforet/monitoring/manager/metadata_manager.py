@@ -15,7 +15,7 @@ class MetadataManager(BaseManager):
     @staticmethod
     def get_data_source_metadata():
         metadata = LogMetadata.set_fields(
-            name='cloudtrail-table',
+            name='cloud-logging-table',
             fields=[
                 # MoreField.data_source('Event Name', 'event_name', options={
                 #     'layout': {

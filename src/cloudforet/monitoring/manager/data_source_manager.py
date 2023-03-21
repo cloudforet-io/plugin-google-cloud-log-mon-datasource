@@ -1,8 +1,8 @@
 import logging
 from spaceone.core.manager import BaseManager
-# from cloudforet.monitoring.connector.cloudtrail_connector import CloudTrailConnector
 from cloudforet.monitoring.model.data_source_response_model import DataSourceMetadata
 from cloudforet.monitoring.manager.metadata_manager import MetadataManager
+from cloudforet.monitoring.connector.cloud_logging_connector import CloudLoggingConnector
 from cloudforet.monitoring.conf.monitoring_conf import *
 
 _LOGGER = logging.getLogger(__name__)
@@ -21,6 +21,5 @@ class DataSourceManager(BaseManager):
         return response_model.to_primitive()
 
     def verify(self, params):
-        pass
-        # cloudtrail_connector: CloudTrailConnector = self.locator.get_connector('CloudTrailConnector', **params)
-        # cloudtrail_connector.set_client(DEFAULT_REGION)
+        cloud_logging_connector: CloudLoggingConnector = self.locator.get_connector(CloudLoggingConnector, **params)
+        cloud_logging_connector.verify()

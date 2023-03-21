@@ -1,3 +1,4 @@
 spaceone-core
 spaceone-api
+google-api-python-client
 schematics

@@ -33,7 +33,8 @@ setup(
     install_requires=[
         'spaceone-core',
         'spaceone-api',
-        'schematics',
+        'google-api-python-client',
+        'schematics'
     ],
     zip_safe=False,
 )

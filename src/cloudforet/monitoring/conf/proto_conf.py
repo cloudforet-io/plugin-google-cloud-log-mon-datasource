@@ -1,4 +1,4 @@
 PROTO = {
-    'spaceone.monitoring.api.plugin.data_source': ['DataSource'],
-    'spaceone.monitoring.api.plugin.log': ['Log'],
+    'cloudforet.monitoring.api.plugin.data_source': ['DataSource'],
+    'cloudforet.monitoring.api.plugin.log': ['Log'],
 }
