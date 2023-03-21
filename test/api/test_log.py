@@ -49,22 +49,22 @@ class TestLog(TestCase):
             'options': {},
             'secret_data': secret_data,
             'query': {
-                'resource_id': '',
+                'resource_id': '969092xxxxx',
                 'name': 'projects/bluese-cloudone-20200113',
                 'filter': [
                     {
-                        'resource_type': 'gec_instance',
+                        'resource_type': 'gce_instance',
                         'labels': [
                             {
                                 'key': 'resource.labels.instance_id',
-                                'value': ''
+                                'value': '969092xxxxx'
                             }
                         ]
                     }
                 ]
             },
-            'start': '2023-03-21T09:00:00.717Z',
-            'end': '2023-11-14T16:00:00.717Z'
+            'start': '2023-03-21T00:00:00Z',
+            'end': '2023-03-21T23:00:00Z'
         }
 
         resource_stream = self.monitoring.Log.list(params)

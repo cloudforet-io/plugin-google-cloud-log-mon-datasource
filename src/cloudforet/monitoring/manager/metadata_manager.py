@@ -1,7 +1,7 @@
 import logging
 from spaceone.core.manager import BaseManager
 from cloudforet.monitoring.model.metadata.metadata import LogMetadata
-from cloudforet.monitoring.model.metadata.metadata_dynamic_field import TextDyField, DateTimeDyField, ListDyField, \
+from cloudforet.monitoring.model.metadata.metadata_dynamic_field import TextDyField, DateTimeDyField, EnumDyField, \
     MoreField
 
 _LOGGER = logging.getLogger(__name__)
@@ -17,22 +17,27 @@ class MetadataManager(BaseManager):
         metadata = LogMetadata.set_fields(
             name='cloud-logging-table',
             fields=[
-                # MoreField.data_source('Event Name', 'event_name', options={
-                #     'layout': {
-                #         'name': 'Event Details',
-                #         'type': 'popup',
-                #         'options': {
-                #             'layout': {
-                #                 'type': 'raw'
-                #             }
-                #         }
-                #     }
-                # }),
-                # TextDyField.data_source('User Name', 'username'),
-                # DateTimeDyField.data_source('Event Time', 'event_time'),
-                # TextDyField.data_source('Access Key ID', 'access_key_id'),
-                # TextDyField.data_source('Region', 'cloud_trail_event.awsRegion'),
-                # TextDyField.data_source('Error Message', 'cloud_trail_event.errorMessage')
+                MoreField.data_source('Event Name', 'log_name', options={
+                    'layout': {
+                        'name': 'Event Details',
+                        'type': 'popup',
+                        'options': {
+                            'layout': {
+                                'type': 'raw'
+                            }
+                        }
+                    }
+                }),
+                EnumDyField.data_source('Severity', 'severity', default_badge={
+                    'red.500': ['ALERT', 'EMERGENCY'],
+                    'coral.500': ['ERROR', 'CRITICAL'],
+                    'yellow.300': ['NOTICE', 'WARNING'],
+                    'gray.500': ['DEBUG', 'INFO', 'NOTICE'],
+                    'black': ['DEFAULT']
+                }),
+                TextDyField.data_source('Method name', 'proto_payload.methodName'),
+                TextDyField.data_source('User Name', 'proto_payload.authenticationInfo.principalEmail'),
+                DateTimeDyField.data_source('Event Time', 'timestamp'),
             ]
         )
         return metadata
