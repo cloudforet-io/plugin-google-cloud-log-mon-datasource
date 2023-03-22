@@ -17,7 +17,7 @@ class MetadataManager(BaseManager):
         metadata = LogMetadata.set_fields(
             name='cloud-logging-table',
             fields=[
-                MoreField.data_source('Event Name', 'log_name', options={
+                MoreField.data_source('Method Name', 'proto_payload.methodName', options={
                     'layout': {
                         'name': 'Event Details',
                         'type': 'popup',
@@ -36,9 +36,9 @@ class MetadataManager(BaseManager):
                     'gray.500': ['DEBUG', 'INFO'],
                     'black': ['DEFAULT']
                 }),
-                TextDyField.data_source('Method name', 'proto_payload.methodName'),
                 TextDyField.data_source('User Name', 'proto_payload.authenticationInfo.principalEmail'),
                 DateTimeDyField.data_source('Event Time', 'timestamp'),
+                TextDyField.data_source('Event Name', 'log_name')
             ]
         )
         return metadata
