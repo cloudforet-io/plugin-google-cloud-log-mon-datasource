@@ -12,6 +12,10 @@ class MonitoringManager(BaseManager):
         super().__init__(transaction)
 
     def list_logs(self, params):
+        query = params.get('query', {})
+        if not query:
+            return Log({'results': []})
+
         cloud_logging_conn: CloudLoggingConnector = self.locator.get_connector('CloudLoggingConnector', **params)
 
         for logs in cloud_logging_conn.list_log_entries(params):
