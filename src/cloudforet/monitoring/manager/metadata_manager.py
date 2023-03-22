@@ -32,7 +32,8 @@ class MetadataManager(BaseManager):
                     'red.500': ['ALERT', 'EMERGENCY'],
                     'coral.500': ['ERROR', 'CRITICAL'],
                     'yellow.300': ['NOTICE', 'WARNING'],
-                    'gray.500': ['DEBUG', 'INFO', 'NOTICE'],
+                    'green.500': ['NOTICE'],
+                    'gray.500': ['DEBUG', 'INFO'],
                     'black': ['DEFAULT']
                 }),
                 TextDyField.data_source('Method name', 'proto_payload.methodName'),

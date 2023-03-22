@@ -22,6 +22,8 @@ class CloudLoggingConnector(GoogleCloudConnector):
             'orderBy': 'timestamp desc'
         }
 
+        _LOGGER.debug(f'Cloud Logging Filter: {body["filter"]}')
+
         request = self.client.entries().list(body=body)
 
         while request is not None:
@@ -33,7 +35,7 @@ class CloudLoggingConnector(GoogleCloudConnector):
     @staticmethod
     def _generate_logging_filter(query, start, end):
         logging_filter = ''
-        log_filters = query.get('filter', [])
+        log_filters = query.get('filters', [])
         for log_filter in log_filters:
 
             _filter = []
