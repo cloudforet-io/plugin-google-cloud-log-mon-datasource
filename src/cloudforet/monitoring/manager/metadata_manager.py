@@ -38,7 +38,8 @@ class MetadataManager(BaseManager):
                 }),
                 TextDyField.data_source('User Name', 'proto_payload.authenticationInfo.principalEmail'),
                 DateTimeDyField.data_source('Event Time', 'timestamp'),
-                TextDyField.data_source('Event Name', 'log_name')
+                TextDyField.data_source('Event Name', 'log_name'),
+                TextDyField.data_source('Error Message', 'proto_payload.response.error.message')
             ]
         )
         return metadata
