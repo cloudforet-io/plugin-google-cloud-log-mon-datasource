@@ -16,25 +16,20 @@
 
 from setuptools import setup, find_packages
 
-with open('VERSION', 'r') as f:
+with open("VERSION", "r") as f:
     VERSION = f.read().strip()
     f.close()
 
 setup(
-    name='plugin-google-cloud-logging',
+    name="plugin-google-cloud-logging",
     version=VERSION,
-    description='Google cloud logging collector',
-    long_description='',
-    url='https://www.cloudforet-io.com/',
-    author='MEGAZONE SpaceONE Team',
-    author_email='admin@spaceone.dev',
-    license='Apache License 2.0',
+    description="Google cloud logging collector",
+    long_description="",
+    url="https://www.cloudforet-io.com/",
+    author="MEGAZONE SpaceONE Team",
+    author_email="admin@spaceone.dev",
+    license="Apache License 2.0",
     packages=find_packages(),
-    install_requires=[
-        'spaceone-core',
-        'spaceone-api',
-        'google-api-python-client',
-        'schematics'
-    ],
+    install_requires=["spaceone-api", "google-api-python-client", "schematics"],
     zip_safe=False,
 )
