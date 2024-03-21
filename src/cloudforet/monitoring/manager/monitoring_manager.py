@@ -22,10 +22,12 @@ class MonitoringManager(BaseManager):
 
             event_vos = []
             for log in logs:
-                if log.get('protoPayload'):
-                    try:
-                        event_vos.append(Event(log))
-                    except Exception as e:
-                        raise ERROR_CONVERT_EVENT(event=log, error=e)
+                if proto_payload := log.get('protoPayload'):
+                    principal_email = proto_payload.get('authenticationInfo', {}).get('principalEmail')
+                    if not principal_email.startswith('system'):
+                        try:
+                            event_vos.append(Event(log))
+                        except Exception as e:
+                            raise ERROR_CONVERT_EVENT(event=log, error=e)
 
             yield Log({'results': event_vos})
