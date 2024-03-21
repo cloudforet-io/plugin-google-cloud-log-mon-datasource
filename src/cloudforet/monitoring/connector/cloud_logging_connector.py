@@ -19,17 +19,22 @@ class CloudLoggingConnector(GoogleCloudConnector):
         body = {
             'resource_names': f'projects/{self.project_id}',
             'filter': self._generate_logging_filter(query, start, end),
-            'orderBy': 'timestamp desc'
+            'orderBy': 'timestamp desc',
+            'pageSize': 10000
         }
 
         _LOGGER.debug(f'Cloud Logging Filter: {body["filter"]}')
 
         request = self.client.entries().list(body=body)
 
+        count = 0
         while request is not None:
+            if count == 5:
+                break
             response = request.execute()
             logs = [log for log in response.get('entries', [])]
             yield logs
+            count += 1
             request = self.client.entries().list_next(previous_request=request, previous_response=response)
 
     @staticmethod
