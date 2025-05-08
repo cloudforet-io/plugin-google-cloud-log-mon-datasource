@@ -6,6 +6,8 @@ _LOGGER = logging.getLogger(__name__)
 
 
 @authentication_handler
+@authorization_handler
+@event_handler
 class MonitoringService(BaseService):
     def __init__(self, metadata):
         super().__init__(metadata)
