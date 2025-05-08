@@ -30,4 +30,6 @@ class MonitoringManager(BaseManager):
                         except Exception as e:
                             raise ERROR_CONVERT_EVENT(event=log, error=e)
 
+            if not event_vos:
+                continue
             yield Log({'results': event_vos})

@@ -23,7 +23,7 @@ class CloudLoggingConnector(GoogleCloudConnector):
             'pageSize': 10000
         }
 
-        _LOGGER.debug(f'Cloud Logging Filter: {body["filter"]}')
+        _LOGGER.info(f'Cloud Logging Filter: {body["filter"]}')
 
         request = self.client.entries().list(body=body)
 
